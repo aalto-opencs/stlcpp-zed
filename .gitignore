@@ -1,0 +1,6 @@
+# Thin extension repo: do not commit generated grammar/build artifacts.
+# Zed will fetch/build grammars from the Git repo specified in `extension.toml`.
+grammars/
+
+# OS / misc
+*.bak

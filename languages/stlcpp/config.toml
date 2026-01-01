@@ -1,0 +1,46 @@
+name = "STLC++"
+grammar = "stlcpp"
+
+# Bracket pairs (used for bracket matching and rainbow delimiters)
+#
+# Zed's rainbow delimiters rely on these bracket pairs to compute nesting.
+# Even with a Tree-sitter `brackets.scm` query, having these configured ensures
+# consistent nesting behavior.
+brackets = [
+  { start = "(", end = ")", close = true, surround = true, newline = false },
+  { start = "[", end = "]", close = true, surround = true, newline = false },
+  { start = "{", end = "}", close = true, surround = true, newline = false },
+]
+
+# File association
+path_suffixes = ["stlc"]
+first_line_pattern = ""
+
+# Basic editor behavior
+autoclose_before = "}])"
+
+# STLC++ only has line comments, using `//`
+line_comments = ["//"]
+
+# No block comments in STLC++
+# (Zed 0.217 expects a sequence for `block_comment`, but we omit it entirely.)
+
+# Indentation rules:
+# - Increase indent after '=' (common in functional definitions)
+# - Increase indent after ':' (type ascriptions can continue)
+# - Increase indent after opening delimiters
+# - Decrease indent on closing delimiters
+#
+# Note: These are heuristics; they'll still behave reasonably without a full grammar.
+increase_indent_pattern = "(=\\s*$|:\\s*$|\\{\\s*$|\\(\\s*$|\\[\\s*$)"
+decrease_indent_pattern = "^(\\s*[\\}\\)\\]])"
+
+# Useful for word-based navigation/selection.
+#
+# Term names can contain: . _ '
+# and may include other alphanumerics, but are lowercase-initial (enforced by the parser/grammar).
+#
+# Type names are uppercase-initial and alphanumeric, with `_` being a special type.
+#
+# Zed 0.217 expects `word_characters` to be a sequence of additional characters considered part of a word.
+word_characters = [".", "_", "'"]
