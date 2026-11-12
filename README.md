@@ -1,5 +1,7 @@
 # STLC++ language support for Zed (`stlcpp`)
 
+<img src="docs/opencs-icon.png" alt="OpenCS bracket and cursor symbol on a pink tile" width="96" height="96">
+
 This repository contains a **Zed language extension** for **STLC++** (called `stlcpp` in this repo).
 
 ## Upstream references
